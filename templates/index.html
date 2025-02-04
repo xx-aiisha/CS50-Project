@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container">
+    <h1 class="text-center my-4">Email System</h1>
+    <a href="/send" class="btn btn-primary mb-3">Send New Email</a>
+    <h2>Sent Emails</h2>
+    <ul class="list-group">
+        {% for email in emails %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <strong>{{ email['subject'] }}</strong> - Sent to {{ email['recipient'] }}
+            </div>
+            <div>
+                <a href="/view/{{ email['id'] }}" class="btn btn-sm btn-info">View</a>
+                <a href="/edit/{{ email['id'] }}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="/delete/{{ email['id'] }}" class="btn btn-sm btn-danger"
+                   onclick="return confirm('Are you sure you want to undo this email?');">Undo</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
